@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @author.name %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @author.age %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= te(@author, :status) %>
+  <%= @author.status_i18n %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @author.gender %>
+</p>
+
+<%= link_to 'Edit', edit_author_path(@author) %> |
+<%= link_to 'Back', authors_path %>

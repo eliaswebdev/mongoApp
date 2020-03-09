@@ -1,0 +1,14 @@
+pt-BR:
+  enums:
+    author:
+      gender:
+        female: 'Mulher'
+        male: 'Homem'
+      status:
+        pending: 'Pendente'
+        available: 'Disponível'
+    book:
+      status:
+        pending: 'Pendente'
+        enabled: 'Disponível'
+        disabled: 'Indisponível'
