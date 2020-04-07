@@ -1,4 +1,4 @@
-<%= form_with(model: author, local: true) do |form| %>
+<%= form_with(model: author, local: true) do |f| %>
   <% if author.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(author.errors.count, "error") %> prohibited this author from being saved:</h2>
@@ -12,28 +12,40 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :age %>
-    <%= form.number_field :age %>
+    <%= f.label :age %>
+    <%= f.number_field :age %>
   </div>
 
   <div class="field" style="display: flex; flex-direction: row;">
-    <%= form.label :status %>
-    <%#= form.select :status, enum_option_pairs(Author, :status) %>
-    <%= form.collection_radio_buttons :status, Author.statuses, :first, :first %>
+    <%= f.label :status %>
+    <%#= f.select :status, enum_option_pairs(Author, :status) %>
+    <%= f.collection_radio_buttons :status, Author.statuses, :first, :first %>
   </div>
 
-  <div class="field" style="display: flex; flex-direction: row;">
-    <%= form.label :gender %>
-    <%#= form.select :gender, enum_option_pairs(Author, :gender) %>
-    <%= form.collection_radio_buttons :gender, Author.genders, :first, :first %>
+  <div class="field d-none" style="display: flex; flex-direction: row;">
+    <%#= f.label :gender %>
+    <%#= f.select :gender, enum_option_pairs(Author, :gender) %>
+    <%#= f.collection_radio_buttons :gender, Author.genders, :first, :first %>
   </div>
+
+
+    <div class="field">
+      <%= f.label(:gender, Author.human_attribute_name(:gender)) %>
+      <%= f.collection_radio_buttons(:gender, Author.genders, :first, :first) do |r| %>
+        <%= tag.div(class: 'form-check form-check-inline') do %>
+          <%= r.radio_button(checked: r.value == @search_params[:gender], class: 'form-check-input') + f.label(Author.human_attribute_name("gender.#{r.text}"), class: 'form-check-label') %>
+        <% end %>
+      <% end %>
+    </div>
+
+
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>

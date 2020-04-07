@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Authors</h1>
+<div class="page-header d-flex flex-direction-row justify-content-between align-items-center mb-5">
+  <h1>Authors</h1>
+  <%= link_to 'New Author', new_author_path, class: 'btn btn-primary' %>
+</div>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -11,7 +14,7 @@
       <th>Gender</th>
       <th>Homem?</th>
       <th>Status</th>
-      <th colspan="3"></th>
+      <th>Actions</th>
     </tr>
   </thead>
 
@@ -23,15 +26,13 @@
         <td><%= te(author, :gender) %></td>
         <td><%= author.gender_i18n %></td>
         <td><%= author.gender_male? %></td>
-        <td><%= author.status %></td>
-        <td><%= link_to 'Show', author %></td>
-        <td><%= link_to 'Edit', edit_author_path(author) %></td>
-        <td><%= link_to 'Destroy', author, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= author.status_i18n %></td>
+        <td>
+          <%= link_to 'Show', author, class: 'btn btn-info' %>
+          <%= link_to 'Edit', edit_author_path(author), class: 'btn btn-primary' %>
+          <%= link_to 'Destroy', author, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Author', new_author_path %>
